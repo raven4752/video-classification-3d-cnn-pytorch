@@ -98,7 +98,13 @@ def make_dataset(video_path, sample_duration):
         sample_i['frame_indices'] = list(range(i, i + sample_duration))
         sample_i['segment'] = torch.IntTensor([i, i + sample_duration - 1])
         dataset.append(sample_i)
-
+    if n_frames < sample_duration:
+        # padding short frames
+        t = list(range(1, 1 + n_frames))
+        sample_i = copy.deepcopy(sample)
+        sample_i['frame_indices'] = t
+        sample_i['segment'] = torch.IntTensor([1,  n_frames])
+        dataset.append(sample_i)
     return dataset
 
 
