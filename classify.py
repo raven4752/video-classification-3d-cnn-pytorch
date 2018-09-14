@@ -23,18 +23,19 @@ def classify_video(video_dir, video_name, class_names, model, opt):
 
     video_outputs = []
     video_segments = []
-    for i, (inputs, segments) in enumerate(data_loader):
-        inputs = Variable(inputs, volatile=True)
-        outputs = model(inputs)
+    with torch.no_grad():
 
-        video_outputs.append(outputs.cpu().data)
-        video_segments.append(segments)
+        for i, (inputs, segments) in enumerate(data_loader):
+            inputs = Variable(inputs)
+            outputs = model(inputs)
+
+            video_outputs.append(outputs.cpu().data)
+            video_segments.append(segments)
 
     video_outputs = torch.cat(video_outputs)
-    #video_segments = torch.cat(video_segments)
+    # video_segments = torch.cat(video_segments)
     results = []
 
-    _, max_indices = video_outputs.max(dim=1)
     for i in range(video_outputs.size(0)):
         clip_results = np.expand_dims(video_outputs[i].numpy(), axis=0)
 

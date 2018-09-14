@@ -10,6 +10,7 @@ In the feature mode, this code outputs features of 512 dims (after global averag
 ## About this fork
 1. setting default parameters to use pretrained model  resnext-101-64f-kinetics.pth
 2. save data use h5py rather than json 
+3. support python3 pytorch 0,4
 ## Requirements
 * [PyTorch](http://pytorch.org/)
 ```
@@ -33,7 +34,7 @@ Assume input video files are located in ```./videos```.
 
 To calculate video features for each 16 frames, use ```--mode feature```.
 ```
-python main.py --input ./input --video_root ./videos --output ./output.json --model ./resnet-34-kinetics.pth --mode feature
+python main.py  --video_root ./videos --output ./output.json --model ./resnet-34-kinetics.pth --mode feature
 ```
 
 
