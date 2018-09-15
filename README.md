@@ -10,7 +10,7 @@ In the feature mode, this code outputs features of 512 dims (after global averag
 ## About this fork
 1. setting default parameters to use pretrained model  resnext-101-64f-kinetics.pth
 2. save data use h5py rather than json 
-3. support python3 pytorch 0,4
+3. support python3 pytorch 0.4+
 ## Requirements
 * [PyTorch](http://pytorch.org/)
 ```
